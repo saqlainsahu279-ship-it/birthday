@@ -1,0 +1,824 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#100e0b">
+<title>Happy Birthday, Ahmed!</title>
+
+<style>
+:root {
+  --bg: #100e0b;
+  --panel: #1b1710;
+  --gold: #e5c37b;
+  --light: #fff0c5;
+  --muted: #c2b6a1;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding:
+    max(14px, env(safe-area-inset-top))
+    max(12px, env(safe-area-inset-right))
+    max(14px, env(safe-area-inset-bottom))
+    max(12px, env(safe-area-inset-left));
+  display: grid;
+  place-items: center;
+  overflow-x: hidden;
+  color: #fffaf0;
+  background:
+    radial-gradient(ellipse at 50% 0%, #49371d, transparent 48%),
+    #100e0b;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+button {
+  font: inherit;
+  touch-action: manipulation;
+}
+
+.page {
+  width: 100%;
+  max-width: 700px;
+  margin: auto;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: clamp(24px, 6vw, 52px);
+  text-align: center;
+  border: 1px solid #c4a15b55;
+  border-radius: 23px;
+  background: linear-gradient(145deg, #211b12, #11100d);
+  box-shadow: 0 20px 65px #0008, inset 0 1px #ffffff0a;
+}
+
+.card::before,
+.card::after {
+  content: "";
+  position: absolute;
+  color: #e5c37b80;
+  font-size: 19px;
+  pointer-events: none;
+}
+
+.card::before {
+  top: 13px;
+  left: 15px;
+}
+
+.card::after {
+  right: 15px;
+  bottom: 13px;
+}
+
+.section {
+  display: none;
+  animation: appear .55s ease both;
+}
+
+.section.active {
+  display: block;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  color: var(--gold);
+  font: 10px/1.6 Arial, sans-serif;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin-top: 17px;
+  font-size: clamp(34px, 8.5vw, 62px);
+  font-weight: normal;
+  line-height: 1.12;
+  overflow-wrap: anywhere;
+}
+
+h1 span {
+  display: block;
+  color: var(--gold);
+  font-style: italic;
+}
+
+.subtitle {
+  max-width: 470px;
+  margin: 16px auto 0;
+  color: var(--muted);
+  font-size: clamp(14px, 3.8vw, 16px);
+  line-height: 1.8;
+}
+
+.gold-line {
+  width: 85px;
+  height: 1px;
+  margin: 24px auto;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.age {
+  display: grid;
+  place-items: center;
+  width: 76px;
+  height: 76px;
+  margin: 23px auto 0;
+  border: 1px solid #e5c37b99;
+  border-radius: 50%;
+  color: var(--gold);
+  font-size: 37px;
+  box-shadow: 0 0 28px #e5c37b14;
+}
+
+.primary-btn,
+.secondary-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  max-width: 100%;
+  margin-top: 24px;
+  padding: 13px 22px;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.primary-btn {
+  color: #21180a;
+  background: linear-gradient(135deg, #f8e5af, #c79c4d);
+}
+
+.secondary-btn {
+  color: var(--gold);
+  background: transparent;
+}
+
+.primary-btn:active,
+.secondary-btn:active {
+  transform: scale(.97);
+}
+
+.footer-note {
+  margin-top: 25px;
+  color: #93846c;
+  font: 9px Arial, sans-serif;
+  letter-spacing: 2px;
+  line-height: 1.8;
+  text-transform: uppercase;
+}
+
+/* Gift */
+.gift-stage {
+  height: 190px;
+  display: grid;
+  place-items: center;
+}
+
+.gift {
+  position: relative;
+  width: 120px;
+  height: 105px;
+  margin-top: 20px;
+  cursor: pointer;
+  touch-action: manipulation;
+  animation: float 3s ease-in-out infinite;
+}
+
+.gift-box {
+  position: absolute;
+  bottom: 0;
+  width: 120px;
+  height: 77px;
+  border-radius: 4px 4px 8px 8px;
+  background: linear-gradient(110deg, #87622b, #e5c37b 48%, #87622b);
+  box-shadow: 0 14px 28px #0007;
+}
+
+.gift-box::before {
+  content: "";
+  position: absolute;
+  left: 47px;
+  width: 25px;
+  height: 100%;
+  background: #fff0c2;
+}
+
+.gift-lid {
+  position: absolute;
+  z-index: 2;
+  top: 13px;
+  left: -7px;
+  width: 134px;
+  height: 23px;
+  border-radius: 4px;
+  background: linear-gradient(110deg, #9a7337, #f0d28a 50%, #a27a3a);
+  transform-origin: left bottom;
+  transition: transform .7s;
+}
+
+.gift-lid::after {
+  content: "";
+  position: absolute;
+  left: 54px;
+  width: 25px;
+  height: 100%;
+  background: #fff1c5;
+}
+
+.gift-bow {
+  position: absolute;
+  z-index: 3;
+  top: -12px;
+  left: 43px;
+  width: 36px;
+  height: 25px;
+  border: 5px solid #f3dca4;
+  border-radius: 50% 50% 10% 50%;
+  transform: rotate(-20deg);
+  transition: .6s;
+}
+
+.gift-bow::after {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: -3px;
+  width: 31px;
+  height: 24px;
+  border: 5px solid #f3dca4;
+  border-radius: 50% 50% 50% 10%;
+  transform: rotate(45deg);
+}
+
+.gift.open .gift-lid {
+  transform: translate(-20px, -62px) rotate(-25deg);
+}
+
+.gift.open .gift-bow {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.gift.open {
+  animation: none;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Responsive cake */
+.cake-area {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: clamp(225px, 65vw, 285px);
+  margin: 22px auto 4px;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y;
+}
+
+.cake-glow {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 12px;
+  height: 65px;
+  border-radius: 50%;
+  background: #d9a84b18;
+  filter: blur(20px);
+}
+
+.plate {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 12px;
+  height: 29px;
+  border: 2px solid #e7cf9d;
+  border-radius: 50%;
+  background: linear-gradient(#fff2ce, #bda26c);
+  box-shadow: 0 8px 17px #0008;
+}
+
+.cake {
+  position: absolute;
+  left: 50%;
+  bottom: 31px;
+  width: min(65%, 240px);
+  height: 132px;
+  transform: translateX(-50%);
+}
+
+.cake-base {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
+  border-radius: 8px 8px 14px 14px;
+  background: linear-gradient(90deg, #6e2f22, #a65b3c 20%, #f2c48c 49%, #a65b3c 80%, #5e281d);
+  box-shadow: inset 0 -12px 0 #54251d55;
+}
+
+.cake-top {
+  position: absolute;
+  z-index: 2;
+  top: 13px;
+  width: 100%;
+  height: 42px;
+  border: 2px solid #f8ddb0;
+  border-radius: 50%;
+  background: linear-gradient(#fff0ce, #e8b878);
+}
+
+.icing {
+  position: absolute;
+  z-index: 3;
+  top: 36px;
+  width: 100%;
+  height: 27px;
+  background: #f7dba8;
+  clip-path: polygon(0 0,100% 0,100% 60%,90% 90%,81% 56%,70% 100%,60% 65%,49% 96%,39% 57%,28% 100%,18% 63%,8% 91%,0 60%);
+}
+
+.berries {
+  position: absolute;
+  z-index: 4;
+  top: 15px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-evenly;
+  font-size: clamp(13px, 4vw, 18px);
+}
+
+.candle {
+  position: absolute;
+  z-index: 5;
+  top: -17px;
+  width: 7px;
+  height: 36px;
+  border-radius: 3px;
+  background: repeating-linear-gradient(135deg, #f5e0b2 0 5px, #b98a41 5px 9px);
+}
+
+.candle:nth-of-type(1) { left: 28%; }
+.candle:nth-of-type(2) { left: 48%; }
+.candle:nth-of-type(3) { left: 68%; }
+
+.flame {
+  position: absolute;
+  top: -16px;
+  left: -3px;
+  width: 13px;
+  height: 17px;
+  border-radius: 70% 30% 60% 40%;
+  transform: rotate(45deg);
+  background: radial-gradient(circle at 65% 65%, #fff9d0 20%, #ffcc54 40%, #ff822e 78%);
+  box-shadow: 0 0 15px #ffb52d;
+  animation: flicker .7s infinite alternate;
+}
+
+@keyframes flicker {
+  to { transform: rotate(50deg) scale(1.08); }
+}
+
+.slice {
+  position: absolute;
+  z-index: 6;
+  right: 2px;
+  bottom: 0;
+  width: 48px;
+  height: 90px;
+  opacity: 0;
+  background: linear-gradient(90deg, #7b3a27, #efc38a);
+  clip-path: polygon(0 0,100% 17%,100% 100%,0 100%);
+  transition: transform .8s, opacity .4s;
+}
+
+.cake-area.cut .slice {
+  opacity: 1;
+  transform: translate(37px, 6px) rotate(8deg);
+}
+
+.cake-area.cut .flame {
+  opacity: 0;
+}
+
+.knife {
+  position: absolute;
+  z-index: 10;
+  top: 7px;
+  left: 3%;
+  width: 108px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  cursor: grab;
+  touch-action: none;
+  transform: rotate(-20deg);
+  filter: drop-shadow(0 4px 5px #0009);
+}
+
+.knife:active {
+  cursor: grabbing;
+}
+
+.blade {
+  width: 69px;
+  height: 14px;
+  background: linear-gradient(#fff8df, #a8a29a);
+  clip-path: polygon(0 0,100% 50%,0 100%,12% 50%);
+}
+
+.handle {
+  width: 39px;
+  height: 17px;
+  margin-left: -2px;
+  border: 1px solid #f3d18b;
+  border-radius: 4px 8px 8px 4px;
+  background: linear-gradient(#d5b16a, #76501e);
+}
+
+.instructions {
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+  padding: 0 5px;
+  color: var(--gold);
+  font: 12px/1.7 Arial, sans-serif;
+}
+
+.letter {
+  max-width: 510px;
+  margin: 20px auto 0;
+  color: #e7dece;
+  font-size: clamp(15px, 4vw, 17px);
+  line-height: 1.9;
+  overflow-wrap: anywhere;
+}
+
+.signature {
+  margin-top: 23px;
+  color: var(--gold);
+  font-size: 23px;
+  font-style: italic;
+}
+
+.confetti {
+  position: fixed;
+  top: -15px;
+  z-index: 100;
+  width: 6px;
+  height: 11px;
+  pointer-events: none;
+  animation: fall 3.5s linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translate(var(--drift), 110vh) rotate(720deg);
+    opacity: .1;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 360px) {
+  .card { padding: 25px 14px; }
+  .eyebrow { letter-spacing: 2px; font-size: 9px; }
+  h1 { font-size: 32px; }
+  .subtitle { font-size: 13px; }
+  .cake { width: 68%; }
+  .cake-area { height: 225px; }
+  .primary-btn, .secondary-btn {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+}
+
+/* Reduce motion when the device requests it */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<main class="page">
+<div class="card">
+
+<section class="section active" id="welcome">
+  <p class="eyebrow">A special day · A special person</p>
+  <h1>Happy Birthday <span id="heroName">Daniyal</span></h1>
+  <div class="age">17</div>
+  <div class="gold-line"></div>
+  <p class="subtitle">
+    Seventeen years of life, countless memories, and so many beautiful
+    chapters still waiting to be written.
+  </p>
+  <button class="primary-btn" onclick="showSection('gift')">
+    Open Your Surprise ✦
+  </button>
+  <p class="footer-note">Made with love, just for you</p>
+</section>
+
+<section class="section" id="gift">
+  <p class="eyebrow">Something from the heart</p>
+  <h1>A little gift <span>for you</span></h1>
+  <p class="subtitle">
+    The best gifts aren't always expensive.
+    Some are made of memories, kind wishes, and words we truly mean.
+  </p>
+
+  <div class="gift-stage">
+    <div class="gift" id="giftBox" role="button" tabindex="0"
+         aria-label="Open birthday gift" onclick="openGift()"
+         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openGift()}">
+      <div class="gift-lid"></div>
+      <div class="gift-bow"></div>
+      <div class="gift-box"></div>
+    </div>
+  </div>
+
+  <p class="instructions" id="giftHint">Tap the gift to open it ✨</p>
+  <button class="primary-btn" id="giftContinue"
+          style="display:none" onclick="showSection('cake')">
+    Let's Celebrate 🎂
+  </button>
+</section>
+
+<section class="section" id="cake">
+  <p class="eyebrow">Make a wish, Ahmed</p>
+  <h1>Your day. <span>Your moment.</span></h1>
+  <p class="subtitle">
+    Close your eyes for a moment, make a wish,
+    then cut your birthday cake.
+  </p>
+
+  <div class="cake-area" id="cakeArea">
+    <div class="cake-glow"></div>
+    <div class="plate"></div>
+
+    <div class="cake">
+      <div class="cake-base"></div>
+      <div class="cake-top"></div>
+      <div class="icing"></div>
+      <div class="berries">🍓 🍒 🍓</div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="candle"><div class="flame"></div></div>
+      <div class="slice"></div>
+    </div>
+
+    <div class="knife" id="knife" role="button" tabindex="0"
+         aria-label="Drag the knife across the cake to cut it">
+      <div class="blade"></div>
+      <div class="handle"></div>
+    </div>
+  </div>
+
+  <p class="instructions" id="cutHint">
+    Drag the knife across the cake to cut your first slice.
+  </p>
+  <button class="secondary-btn" id="cutButton" onclick="cutCake()">
+    ✦ Cut the Cake ✦
+  </button>
+  <button class="primary-btn" id="finishButton"
+          style="display:none" onclick="showSection('final')">
+    Read Your Birthday Message
+  </button>
+</section>
+
+<section class="section" id="final">
+  <p class="eyebrow">A wish from the heart</p>
+  <h1>For you, <span id="finalName">Daniyal</span></h1>
+  <div class="gold-line"></div>
+
+  <p class="letter">
+    Happy 17th birthday! ❤️<br><br>
+    Seventeen is the beginning of a beautiful new chapter. You don't need
+    to have everything figured out, and you don't have to become
+    everything overnight. Give yourself time to learn, grow, make
+    mistakes, and discover the person you want to be.<br><br>
+
+    May your difficult days make you stronger, your good days give you
+    reasons to smile, and your dreams give you the courage to keep going.
+    I hope life brings you genuine friends, peaceful moments, and
+    memories you'll always treasure.<br><br>
+
+    Never forget that your presence matters. Keep your heart kind,
+    your hopes alive, and your head held high. The best parts of your
+    story may still be ahead of you.
+  </p>
+
+  <p class="signature">Keep shining, Daniyal. ✨</p>
+  <div class="gold-line"></div>
+  <h2 style="color:var(--gold);font-weight:normal;font-size:clamp(25px,6vw,38px)">
+    Happy 17th Birthday!
+  </h2>
+  <p class="subtitle">
+    May this year be kinder, brighter, happier,
+    and full of beautiful surprises.
+  </p>
+  <button class="secondary-btn" onclick="restart()">
+    ↻ Relive the Surprise
+  </button>
+  <p class="footer-note">A little memory to keep forever</p>
+</section>
+
+</div>
+</main>
+
+<script>
+const friendName = "Daniyal";
+document.getElementById("heroName").textContent = friendName;
+document.getElementById("finalName").textContent = friendName;
+document.title = "Happy 17th Birthday, " + friendName + "!";
+
+function showSection(id) {
+  document.querySelectorAll(".section").forEach(section => {
+    section.classList.remove("active");
+  });
+  document.getElementById(id).classList.add("active");
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+let giftOpened = false;
+let cakeCut = false;
+
+function openGift() {
+  if (giftOpened) return;
+  giftOpened = true;
+  document.getElementById("giftBox").classList.add("open");
+  document.getElementById("giftHint").textContent =
+    "A little love, wrapped just for you. 💛";
+
+  setTimeout(() => {
+    document.getElementById("giftContinue").style.display = "inline-flex";
+    makeConfetti(30);
+  }, 650);
+}
+
+const knife = document.getElementById("knife");
+const cakeArea = document.getElementById("cakeArea");
+
+let dragging = false;
+let startX = 0;
+let startY = 0;
+let lastX = 0;
+let lastY = 0;
+let dragDistance = 0;
+
+knife.addEventListener("pointerdown", event => {
+  if (cakeCut) return;
+  dragging = true;
+  startX = lastX = event.clientX;
+  startY = lastY = event.clientY;
+  dragDistance = 0;
+  knife.setPointerCapture(event.pointerId);
+  event.preventDefault();
+});
+
+knife.addEventListener("pointermove", event => {
+  if (!dragging || cakeCut) return;
+
+  dragDistance += Math.hypot(event.clientX - lastX, event.clientY - lastY);
+  lastX = event.clientX;
+  lastY = event.clientY;
+
+  const rect = cakeArea.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+  knife.style.left = Math.max(0, Math.min(rect.width - 85, x - 45)) + "px";
+  knife.style.top = Math.max(0, Math.min(rect.height - 35, y - 20)) + "px";
+  knife.style.transform = "rotate(-8deg)";
+});
+
+knife.addEventListener("pointerup", event => {
+  if (!dragging) return;
+  dragging = false;
+
+  const rect = cakeArea.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+  const crossedCake =
+    x > rect.width * .2 &&
+    x < rect.width * .95 &&
+    y > rect.height * .2 &&
+    y < rect.height * .9 &&
+    dragDistance > 45;
+
+  if (crossedCake) {
+    cutCake();
+  } else if (!cakeCut) {
+    document.getElementById("cutHint").textContent =
+      "Drag across the cake itself, or tap the cut button below.";
+  }
+
+  knife.style.transform = "rotate(-20deg)";
+});
+
+knife.addEventListener("pointercancel", () => {
+  dragging = false;
+});
+
+knife.addEventListener("keydown", event => {
+  if ((event.key === "Enter" || event.key === " ") && !cakeCut) {
+    event.preventDefault();
+    cutCake();
+  }
+});
+
+function cutCake() {
+  if (cakeCut) return;
+  cakeCut = true;
+
+  cakeArea.classList.add("cut");
+  knife.style.opacity = "0";
+  knife.style.pointerEvents = "none";
+
+  document.getElementById("cutHint").textContent =
+    "Make that wish, Ahmed. May it bring you closer to your dreams. ✨";
+  document.getElementById("cutButton").style.display = "none";
+
+  setTimeout(() => {
+    document.getElementById("finishButton").style.display = "inline-flex";
+    makeConfetti(65);
+  }, 800);
+}
+
+function makeConfetti(amount) {
+  const colors = ["#e5c37b", "#fff0c2", "#c89a46", "#fffaf0"];
+
+  for (let i = 0; i < amount; i++) {
+    const piece = document.createElement("div");
+    piece.className = "confetti";
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.setProperty("--drift", (Math.random() * 140 - 70) + "px");
+    piece.style.animationDuration = (2.5 + Math.random() * 2) + "s";
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 5000);
+  }
+}
+
+function restart() {
+  giftOpened = false;
+  cakeCut = false;
+
+  document.getElementById("giftBox").classList.remove("open");
+  document.getElementById("giftHint").textContent = "Tap the gift to open it ✨";
+  document.getElementById("giftContinue").style.display = "none";
+
+  cakeArea.classList.remove("cut");
+  knife.style.opacity = "1";
+  knife.style.pointerEvents = "auto";
+  knife.style.left = "3%";
+  knife.style.top = "7px";
+  knife.style.transform = "rotate(-20deg)";
+
+  document.getElementById("cutHint").textContent =
+    "Drag the knife across the cake to cut your first slice.";
+  document.getElementById("cutButton").style.display = "inline-flex";
+  document.getElementById("finishButton").style.display = "none";
+
+  showSection("welcome");
+}
+</script>
+</body>
+</html>
